@@ -1,0 +1,40 @@
+1. (index.php 37 "SELECT * FROM employees') hier wordt de incorrecte qoutes gebruikt er moet hetzelfde qoutes gebruikt worden anders denkt
+PHP dat je een deel van je code als string aan het gebruiken bent. Dit is opgelost door " te gebruiken
+
+2. (index.php echo "</tr>",) hier wordt een , in plaats van een ; door dit fout weet php niet waar de regel einde is.
+Dit is opgelost door ; te gebruiken.
+
+3. (index.php 60 echo '<a href="./view/deleteview.php?id=. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>'; )
+Er mist een ' voor de ?id=.
+de einde van de string is. Dit is opgelost door \ voot de ' te gebruiken (\');
+4. (config.php 10 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME)) Hier worden waarde constante 
+    waardes gebruikt zonder de constant functie te gebruiken. Dit is opgelost door de constant functie te gebruiken
+    om de gegevens van de variabelen op te halen. 
+   
+5. Er worden ook twee ll's gebruikt in localhost (config.php 4 define('DB_SERVER', 'locallhost');)
+
+6. Er wordt ook mysql gebruikt als wachtwoord en dat moet leeg zijn (config.php 6 define('DB_PASSWORD', 'mysql');)
+
+7. (readview.php 3 require_once "../model/readsql.php") Hier wordt op de model met een l gespeld maar 
+    de folder is met 2 l's gespeld. opgelost door de folder naam modell naar model te veranderen.
+
+8. (readsql.php 15 mysqli_stmt_bind_param($stmt, "i", $param_id);
+        
+        // Set parameters
+        18 $param_id = trim($_GET["id"]);) Hier wordt de id gebruikt voordat het opgelhaald is
+        Dit is opgelost door lijn 18 met lijn 15 te wisselen.
+
+9. (readview.php 35 <p><b><?php echo $row["saleary"]; ?></b></p>) saleary is niet salary. opgelost door salary te typen
+
+10. (updatessql.php 
+           83 mysqli_stmt_bind_param($stmt, "i", $param_id);
+           86 $param_id = $id;) hetzelfde als bij fout 8. En id verandert naar i want er moet een type worden gegeven.
+           49 mysqli_stmt_bind_param($stmt, "sss", $param_name, $param_address, $param_salary, $param_id); -> daar moeten 4 s's staan
+11. (deletesql.php 
+        14 mysqli_stmt_bind_param($stmt, "i", $param_id);
+       18 $param_id = trim($_POST["id"]);) hetzelfde als bij fout 8
+       11 $sql = "DELETE FROM employees WHERE id = ??"; hier zitten 2 vraagtekens in plaats van 1.
+
+12 (createview.php) daar moest ik de model importeren: require_once "../model/createsql.php";
+13 (style.css) er wordt 2 keer de wrapper class gebruikt
+14 (index.php) 	<link rel="stylesheet" href="../css/style.css"> de link klopt niet verandert . in plaats van 2
